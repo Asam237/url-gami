@@ -1,7 +1,27 @@
-FROM node:18-alpine
-WORKDIR /usr/src/app
+# Development stage
+FROM node:18-alpine AS development
+
+WORKDIR /app
+
 COPY package*.json ./
+COPY drizzle.config.ts ./
+COPY tsconfig.json ./
+
 RUN npm install
+
 COPY . .
-EXPOSE 3000
-CMD [ "npm", "run", "build", "&&", "npm", "start" ]
+
+# Production stage
+FROM node:18-alpine AS production
+
+WORKDIR /app
+
+COPY package*.json ./
+COPY drizzle.config.ts ./
+COPY tsconfig.json ./
+
+RUN npm install --only=production
+
+COPY . .
+
+CMD ["npm", "serve"]
