@@ -10,9 +10,13 @@ import {
 } from "./src/startup/config";
 export default defineConfig({
   out: "./drizzle",
-  schema: "./src/schemas",
+  schema: "./src/db/schema",
   dialect: "postgresql",
   dbCredentials: {
     url: `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${HOST}:${POSTGRES_PORT}/${DATABASE}`,
+  },
+  migrations: {
+    table: "my-migrations-table",
+    schema: "public",
   },
 });
