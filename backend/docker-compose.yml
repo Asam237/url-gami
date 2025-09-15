@@ -20,14 +20,6 @@ services:
   pgadmin:
     image: dpage/pgadmin4:latest
     container_name: url_gami_pgadmin
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@pgadmin.org
-      PGADMIN_DEFAULT_PASSWORD: supersecretpassword
-    ports:
-      - "3011:80"
-    depends_on:
-      postgres:
-        condition: service_healthy
   app:
     build:
       context: .
