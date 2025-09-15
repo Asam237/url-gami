@@ -1,0 +1,122 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "URL Gami API",
+    "description": "API for creating and redirecting shortened URLs.",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3010",
+  "basePath": "/",
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/shortener/create": {
+      "post": {
+        "summary": "Create a new short URL",
+        "tags": ["Shortener"],
+        "description": "Generates a short code for a given original URL.",
+        "parameters": [
+          {
+            "name": "url_input",
+            "in": "body",
+            "description": "The original URL to be shortened.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UrlInput"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Short URL created successfully",
+            "schema": {
+              "$ref": "#/definitions/UrlOutput"
+            }
+          },
+          "400": {
+            "description": "Bad Request. The original_url is missing from the request body."
+          },
+          "500": {
+            "description": "Internal Server Error. Failed to create the short URL."
+          }
+        }
+      }
+    },
+    "/shortener/{short_code}": {
+      "get": {
+        "summary": "Redirect to the original URL",
+        "tags": ["Shortener"],
+        "description": "Redirects a user to the original URL associated with the provided short code.",
+        "parameters": [
+          {
+            "name": "short_code",
+            "in": "path",
+            "required": true,
+            "description": "The short code to redirect.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "301": {
+            "description": "Redirects to the original URL."
+          },
+          "404": {
+            "description": "Short URL not found."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "UrlInput": {
+      "type": "object",
+      "required": ["original_url"],
+      "properties": {
+        "original_url": {
+          "type": "string",
+          "description": "The URL to be shortened."
+        }
+      },
+      "example": {
+        "original_url": "https://www.google.com"
+      }
+    },
+    "UrlOutput": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "description": "The unique identifier of the URL entry."
+            },
+            "original_url": {
+              "type": "string",
+              "description": "The original, long URL."
+            },
+            "short_code": {
+              "type": "string",
+              "description": "The generated short code."
+            }
+          }
+        }
+      },
+      "example": {
+        "url": {
+          "id": 1,
+          "original_url": "https://www.google.com",
+          "short_code": "aBcDe12"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "url-gami-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "setup": "cp .env.example .env && npx drizzle-kit generate && npx drizzle-kit migrate && npx drizzle-kit push && yarn serve",
+    "serve": "nodemon src/index.ts",
+    "test": "jest --watchAll --verbose --coverage"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^18.11.9",
+    "@types/pg": "^8.11.10",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
+    "drizzle-kit": "^0.26.2",
+    "drizzle-orm": "^0.35.3",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.2",
+    "jsonwebtoken": "^9.0.2",
+    "nanoid": "^5.1.5",
+    "nodemon": "^2.0.20",
+    "pg": "^8.13.1",
+    "shortid": "^2.2.16",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.3"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.11",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/supertest": "^2.0.16",
+    "@types/swagger-ui-express": "^4.1.6",
+    "jest": "^29.7.0",
+    "prettier": "^3.1.1",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.1.1"
+  }
+}

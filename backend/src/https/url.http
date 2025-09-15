@@ -1,0 +1,13 @@
+## Create new url shortener
+
+POST http://localhost:3010/shortener/create
+Content-Type: application/json
+
+{
+ "original_url": "https://recharge.orange.cm/"
+}
+
+### redirect
+
+GET http://localhost:3010/shortener/3Z0vgra
+Content-Type: application/json
