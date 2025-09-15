@@ -6,7 +6,8 @@
   "scripts": {
     "setup": "cp .env.example .env && npx drizzle-kit generate && npx drizzle-kit migrate && npx drizzle-kit push && yarn serve",
     "serve": "nodemon src/index.ts",
-    "test": "jest --watchAll --verbose --coverage"
+    "test": "jest --watchAll --verbose --coverage",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
