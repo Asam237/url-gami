@@ -10,7 +10,7 @@ import {
 } from "./src/startup/config";
 export default defineConfig({
   out: "./drizzle",
-  schema: "./src/schema",
+  schema: "./backend/src/schema",
   dialect: "postgresql",
   dbCredentials: {
     url: `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${HOST}:${POSTGRES_PORT}/${DATABASE}`,
