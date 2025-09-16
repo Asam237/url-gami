@@ -17,9 +17,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3010:3010"
-    volumes:
-      - .:/app
-      - /app/node_modules
     environment:
       DATABASE_URL: postgres://root:root@postgres:5432/url_gami_db
       NODE_ENV: development
