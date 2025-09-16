@@ -4,8 +4,8 @@ services:
   postgres:
     image: postgres:15-alpine
     environment:
-      POSTGRES_USER: asam
-      POSTGRES_PASSWORD: asam
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
       POSTGRES_DB: url_gami_bd
     ports:
       - "5432:5432"
@@ -13,7 +13,7 @@ services:
       - postgres-data:/var/lib/postgresql/data
   app:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     ports:
       - "3010:3010"
